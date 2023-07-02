@@ -15,24 +15,24 @@ import "C"
 
 //export NewGoString
 func NewGoString(s *C.char) *C.char {
-    gs := C.GoString(s)
-    id := NewObjectId(gs)
-    return (*C.char)(unsafe.Pointer(uintptr(id)))
+	gs := C.GoString(s)
+	id := NewObjectId(gs)
+	return (*C.char)(unsafe.Pointer(uintptr(id)))
 }
 
 //export FreeGoString
 func FreeGoString(p *C.char) {
-    id := ObjectId(uintptr(unsafe.Pointer(p)))
-    id.Free()
+	id := ObjectId(uintptr(unsafe.Pointer(p)))
+	id.Free()
 }
 
 //export PrintGoString
 func PrintGoString(s *C.char) {
-    id := ObjectId(uintptr(unsafe.Pointer(p)))
-    gs := id.Get().(string)
-    print(gs)
+	id := ObjectId(uintptr(unsafe.Pointer(p)))
+	gs := id.Get().(string)
+	print(gs)
 }
 
 func main() {
-    C.printString("hello")
+	C.printString("hello")
 }
